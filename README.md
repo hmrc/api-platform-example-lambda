@@ -1,7 +1,6 @@
+# API Platform Example Lambda
 
-# api-platform-example-lambda
-
-This is a placeholder README.md for a new repository
+This is an example of an AWS lambda written in Scala.
 
 ### License
 

@@ -5,10 +5,10 @@ lazy val compile = Seq(
   "io.github.mkotsur" %% "aws-lambda-scala" % "0.1.1"
 )
 
-lazy val scope: String = "test,it"
+lazy val scope: String = "test"
 
 lazy val test = Seq(
-  "org.scalatest" %% "scalatest" % "3.0.5"
+  "org.scalatest" %% "scalatest" % "3.0.5" % scope
 )
 
 lazy val plugins: Seq[Plugins] = Seq()
