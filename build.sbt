@@ -31,4 +31,7 @@ lazy val lambda = (project in file("."))
     assemblyJarName in assembly := s"$appName.zip"
   )
 
-
+// Coverage configuration
+coverageMinimum := 90
+coverageFailOnMinimum := true
+coverageExcludedPackages := "<empty>"
