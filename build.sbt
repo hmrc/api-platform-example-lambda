@@ -1,19 +1,19 @@
 lazy val appName = "api-platform-example-lambda"
-lazy val appDependencies: Seq[ModuleID] = compile ++ test
+lazy val appDependencies: Seq[ModuleID] = compileDependencies ++ testDependencies
 
-lazy val compile = Seq(
+lazy val compileDependencies = Seq(
   "io.github.mkotsur" %% "aws-lambda-scala" % "0.1.1"
 )
 
-lazy val scope: String = "test"
+lazy val testScope: String = "test"
 
-lazy val test = Seq(
-  "org.scalatest" %% "scalatest" % "3.0.5" % scope
+lazy val testDependencies = Seq(
+  "org.scalatest" %% "scalatest" % "3.0.5" % testScope
 )
 
 lazy val plugins: Seq[Plugins] = Seq()
 
-lazy val microservice = (project in file("."))
+lazy val lambda = (project in file("."))
   .enablePlugins(plugins: _*)
   .settings(
     name := appName,
@@ -27,3 +27,8 @@ lazy val microservice = (project in file("."))
     resolvers += Resolver.bintrayRepo("hmrc", "releases"),
     resolvers += Resolver.jcenterRepo
   )
+  .settings(
+    assemblyJarName in assembly := s"$appName.zip"
+  )
+
+
