@@ -1,5 +1,8 @@
 package example
 
+import java.net.HttpURLConnection._
+
+import com.amazonaws.services.lambda.runtime.events.{APIGatewayProxyRequestEvent, APIGatewayProxyResponseEvent}
 import com.amazonaws.services.lambda.runtime.{ClientContext, CognitoIdentity, Context, LambdaLogger}
 import org.scalatest._
 
@@ -9,10 +12,12 @@ class HelloHandlerSpec extends FlatSpec with Matchers {
   }
 
   "The hello handler" should "say hello" in new Setup {
-    val result: Either[Nothing, Hello] = helloHandler.handle(None, TestContext)
+    val result: Either[Nothing, APIGatewayProxyResponseEvent] = helloHandler.handle(new APIGatewayProxyRequestEvent(), TestContext)
+
     result.isRight shouldBe true
-    val Right(Hello(resultMessage)) = result
-    resultMessage shouldEqual "Hello from api-platform-example-lambda!"
+    val Right(responseEvent) = result
+    responseEvent.getStatusCode shouldEqual HTTP_OK
+    responseEvent.getBody shouldEqual "Hello from api-platform-example-lambda!"
   }
 }
 
