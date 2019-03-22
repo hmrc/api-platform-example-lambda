@@ -8,7 +8,8 @@ lazy val compileDependencies = Seq(
 lazy val testScope: String = "test"
 
 lazy val testDependencies = Seq(
-  "org.scalatest" %% "scalatest" % "3.0.5" % testScope
+  "org.scalatest" %% "scalatest" % "3.0.5" % testScope,
+  "org.mockito" % "mockito-core" % "2.25.1" % testScope
 )
 
 lazy val plugins: Seq[Plugins] = Seq()
